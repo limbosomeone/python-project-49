@@ -4,3 +4,4 @@
 
 
 https://asciinema.org/a/HLjPckHezdLLplvrMEuZuyip4 - brain-even record
+https://asciinema.org/a/uIxhpbfkRZclI7GCpbDv32fkt - brain-calc record
