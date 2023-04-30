@@ -1,4 +1,3 @@
-from .cli import *
 import prompt
 
 
@@ -18,7 +17,7 @@ def user_answer():
 
 def give_task(task):
     print(task)
-    
+
 
 def give_question(question):
     print(f'Question: {question}')
@@ -47,4 +46,3 @@ def three_rounds_loop(game_feature, name):
             break
     if counter == 4:
         print(f'Congratulations, {name}!')
-        

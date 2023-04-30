@@ -1,6 +1,7 @@
 import operator
 from random import random, uniform
 from brain_games.engine import *
+from brain_games.cli import welcome_user
 
 
 task = 'What is the result of the expression?'
@@ -24,7 +25,7 @@ def random_exprection():
 
 def get_calc_feature():
     expression = random_exprection()
-    calc_question = give_question(expression[0])
+    give_question(expression[0])
     answer = user_answer()
     answer = int(answer) if answer.isdigit() else answer
     correct_answer = expression[1]
