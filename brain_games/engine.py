@@ -5,26 +5,27 @@ import prompt
 config_list = [
     task,
     question(),
-    correct_answer(question),
+    correct_answer(),
     ]
 """
-
-
-def user_answer():
-    answer = prompt.string('Your answer: ')
-    return answer
 
 
 def give_task(task):
     print(task)
 
 
-def give_question(question):
-    print(f'Question: {question}')
-    return question
+def give_question(game_question):
+    print(f'Question: {game_question}')
+    return game_question
+
+
+def get_user_answer():
+    answer = prompt.string('Your answer: ')
+    return answer
 
 
 def compare_answers(answer, correct_answer, name):
+    answer = int(answer) if answer.isdigit() else answer
     if answer == correct_answer:
         print('Correct!')
         return True
@@ -34,15 +35,23 @@ def compare_answers(answer, correct_answer, name):
         return False
 
 
-def three_rounds_loop(game_feature, name):
-    counter = 1
+def three_rounds_loop(ask_game_question, get_game_correct_answer, name):
+    counter = 0
     question_count = 3
     for i in range(question_count):
-        answer, correct_answer = game_feature()
+        question = ask_game_question()
+        give_question(question)
+        correct_answer = get_game_correct_answer(question)
+        answer = get_user_answer()
         compare_result = compare_answers(answer, correct_answer, name)
         if compare_result:
             counter += 1
         else:
             break
-    if counter == 4:
+    if counter == 3:
         print(f'Congratulations, {name}!')
+
+
+def start_brain_game(task, ask_game_question, get_game_correct_answer, name):
+    give_task(task)
+    three_rounds_loop(ask_game_question, get_game_correct_answer, name)

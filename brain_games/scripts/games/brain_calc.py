@@ -1,6 +1,6 @@
 import operator
 from random import random, uniform
-from brain_games.engine import *
+from brain_games.engine import start_brain_game
 from brain_games.cli import welcome_user
 
 
@@ -19,23 +19,23 @@ def random_exprection():
     operator_list = ['+', '*', '-']
     random_operator = operator_list[operator_index]
     expresion = f'{x} {random_operator} {y}'
-    expresion_result = get_operator(random_operator)(x, y)
-    return (expresion, expresion_result)
+    return expresion
 
 
-def get_calc_feature():
+def ask_calc_question():
     expression = random_exprection()
-    give_question(expression[0])
-    answer = user_answer()
-    answer = int(answer) if answer.isdigit() else answer
-    correct_answer = expression[1]
-    return [answer, correct_answer]
+    return expression
+
+
+def get_calc_correct_answer(question_result):
+    x, op, y = question_result.split()
+    expresion_result = get_operator(op)(int(x), int(y))
+    return expresion_result
 
 
 def start_calc_game(name):
-    give_task(task)
-    three_rounds_loop(get_calc_feature, name)
-    
+    start_brain_game(task, ask_calc_question, get_calc_correct_answer, name)
+
 
 def main():
     name = welcome_user()
