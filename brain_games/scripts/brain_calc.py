@@ -1,14 +1,10 @@
 import operator
-import prompt
 from random import random, uniform
 from ..cli import welcome_user
+from ..engine import *
 
 
-def user_answer():
-    answer = prompt.string('Your answer: ')
-    return answer
-
-
+task = 'What is the result of the expression?'
 get_operator = {
     '+': operator.add,
     '-': operator.sub,
@@ -28,24 +24,21 @@ def random_exprection():
 
 
 def main():
-    print('Welcome to the Brain Games!')
     name = welcome_user()
-    counter = 0
-    questions_count = 3
-    print('What is the result of the expression?')
-    for i in range(questions_count):
-        expresion = random_exprection()
-        correct_answer = expresion[1]
-        print(f'Question: {expresion[0]}')
+    give_task(task)
+    counter = 1
+    for i in range(3):
+        exprestion = random_exprection()
+        give_question(exprestion[0])
         answer = user_answer()
-        if answer.isdigit() and int(answer) == correct_answer:
-            print('Correct!')
+        answer = int(answer) if answer.isdigit() else answer
+        correct_answer = int(exprestion[1])
+        compare_result = compare_answers(answer, correct_answer, name)
+        if compare_result:
             counter += 1
         else:
-            print(f"'{answer}' is wrong answer ;(. Correct answer was "
-            f"'{correct_answer}'.\nLet's try again, {name}!")
             break
-    if counter == 3:
+    if counter == 4:
         print(f'Congratulations, {name}!')
 
 

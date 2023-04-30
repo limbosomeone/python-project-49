@@ -1,44 +1,32 @@
-import prompt
 from random import random
-from ..cli import welcome_user
+from ..engine import *
 
 
-def user_answer():
-    answer = prompt.string('Your answer: ')
-    return answer
+task = 'Answer "yes" if the number is even, otherwise answer "no".'
+def even_correct_answer(question):
+    if question % 2 == 0:
+        correct_answer = 'yes'
+    else:
+        correct_answer = 'no'
+    return correct_answer
 
 
 def main():
-    print('Welcome to the Brain Games!')
     name = welcome_user()
-    counter = 0
-    questions_count = 3
-    print('Answer "yes" if the number is even, otherwise answer "no".')
-    for i in range(questions_count):
-        number_for_question = int(random() * 100)
-        print(f'Question: {number_for_question}')
+    give_task(task)
+    counter = 1
+    for i in range(3):
+        even_question = give_question(int(random()*100))
         answer = user_answer()
-        if number_for_question % 2 == 0:
-            correct_answer = 'yes'
-            if answer == correct_answer:
-                print('Correct!')
-                counter += 1
-            else:
-                print(f"'{answer}' is wrong answer ;(. Correct answer was "
-                      f"'{correct_answer}'.\nLet's try again, {name}!")
-                break
+        correct_answer = even_correct_answer(even_question)
+        compare_result = compare_answers(answer, correct_answer, name)
+        if compare_result:
+            counter += 1
         else:
-            correct_answer = 'no'
-            if answer == correct_answer:
-                print('Correct!')
-                counter += 1
-            else:
-                print(f"'{answer}' is wrong answer ;(. Correct answer was "
-                      f"'{correct_answer}'.\nLet's try again, {name}!")
-                break
-    if counter == 3:
+            break
+    if counter == 4:
         print(f'Congratulations, {name}!')
-
-
+        
+        
 if __name__ == '__main__':
     main()
