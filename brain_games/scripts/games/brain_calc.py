@@ -1,7 +1,6 @@
 import operator
 from random import random, uniform
-from ..cli import welcome_user
-from ..engine import *
+from brain_games.engine import *
 
 
 task = 'What is the result of the expression?'
@@ -23,23 +22,23 @@ def random_exprection():
     return (expresion, expresion_result)
 
 
+def get_calc_feature():
+    expression = random_exprection()
+    calc_question = give_question(expression[0])
+    answer = user_answer()
+    answer = int(answer) if answer.isdigit() else answer
+    correct_answer = expression[1]
+    return [answer, correct_answer]
+
+
+def start_calc_game(name):
+    give_task(task)
+    three_rounds_loop(get_calc_feature, name)
+    
+
 def main():
     name = welcome_user()
-    give_task(task)
-    counter = 1
-    for i in range(3):
-        exprestion = random_exprection()
-        give_question(exprestion[0])
-        answer = user_answer()
-        answer = int(answer) if answer.isdigit() else answer
-        correct_answer = int(exprestion[1])
-        compare_result = compare_answers(answer, correct_answer, name)
-        if compare_result:
-            counter += 1
-        else:
-            break
-    if counter == 4:
-        print(f'Congratulations, {name}!')
+    start_calc_game(name)
 
 
 if __name__ == '__main__':

@@ -34,4 +34,17 @@ def compare_answers(answer, correct_answer, name):
               f"'{correct_answer}'.\nLet's try again, {name}!")
         return False
 
+
+def three_rounds_loop(game_feature, name):
+    counter = 1
+    question_count = 3
+    for i in range(question_count):
+        answer, correct_answer = game_feature()
+        compare_result = compare_answers(answer, correct_answer, name)
+        if compare_result:
+            counter += 1
+        else:
+            break
+    if counter == 4:
+        print(f'Congratulations, {name}!')
         
