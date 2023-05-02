@@ -15,21 +15,21 @@ get_operator = {
 def random_exprection():
     x = int(random() * 100)
     y = int(random() * 10)
-    operator_index = int(uniform(0, 3))
+    random_operator_index = int(uniform(0, 3))
     operator_list = ['+', '*', '-']
-    random_operator = operator_list[operator_index]
-    expresion = f'{x} {random_operator} {y}'
-    return expresion
+    random_operator = operator_list[random_operator_index]
+    question = f'{x} {random_operator} {y}'
+    for_correct_answer = get_operator(random_operator)(x, y)
+    return (question, for_correct_answer)
 
 
 def ask_calc_question():
-    expression = random_exprection()
-    return expression
+    question, correct_answer = random_exprection()
+    return (question, correct_answer)
 
 
 def get_calc_correct_answer(question_result):
-    x, op, y = question_result.split()
-    expresion_result = get_operator(op)(int(x), int(y))
+    expresion_result = question_result
     return expresion_result
 
 

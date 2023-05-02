@@ -7,8 +7,9 @@ task = 'Find the greatest common divisor of given numbers.'
 
 
 def ask_gcd_question():
-    question_result = (int(random()*100), int(random()*10))
-    return question_result
+    question = (int(random()*100), int(random()*10))
+    correct_answer = question
+    return (question, correct_answer)
 
 
 def get_gcd_correct_answer(question_result):

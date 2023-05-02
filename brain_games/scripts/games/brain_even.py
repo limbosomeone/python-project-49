@@ -7,7 +7,9 @@ task = 'Answer "yes" if the number is even, otherwise answer "no".'
 
 
 def ask_even_question():
-    return int(random() * 100)
+    question = int(random() * 100)
+    for_correct_answer = question
+    return (question, for_correct_answer)
 
 
 def get_even_correct_answer(question_result):

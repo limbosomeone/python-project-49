@@ -15,8 +15,8 @@ def give_task(task):
 
 
 def give_question(game_question):
-    print(f'Question: {game_question}')
-    return game_question
+    print(f'Question: {game_question[0]}')
+    return game_question[1]
 
 
 def get_user_answer():
@@ -39,8 +39,7 @@ def three_rounds_loop(ask_game_question, get_game_correct_answer, name):
     counter = 0
     question_count = 3
     for i in range(question_count):
-        question = ask_game_question()
-        give_question(question)
+        question = give_question(ask_game_question())
         correct_answer = get_game_correct_answer(question)
         answer = get_user_answer()
         compare_result = compare_answers(answer, correct_answer, name)
