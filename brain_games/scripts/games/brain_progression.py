@@ -26,7 +26,7 @@ def get_progression_correct_answer(question_result):
     return correct_answer
 
 
-def start_gcd_game(name):
+def start_progression_game(name):
     start_brain_game(task,
                      ask_progression_question,
                      get_progression_correct_answer,
@@ -35,4 +35,4 @@ def start_gcd_game(name):
 
 def main():
     name = welcome_user()
-    start_gcd_game(name)
+    start_progression_game(name)
