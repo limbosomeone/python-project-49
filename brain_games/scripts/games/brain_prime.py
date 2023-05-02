@@ -32,12 +32,12 @@ def get_prime_correct_answer(question_result):
 
 def start_game(name):
     start_brain_game(task, ask_prime_question, get_prime_correct_answer, name)
-    
-    
+
+
 def main():
     name = welcome_user()
     start_game(name)
-    
+
 
 if __name__ == '__main__':
     main()
